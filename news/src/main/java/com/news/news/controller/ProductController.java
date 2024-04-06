@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,7 +40,14 @@ public class ProductController {
                     .toList();
             return ResponseEntity.badRequest().body(errorMessages);
         }
-        MultipartFile file = productDTO.getFile();
+        List<MultipartFile> files = productDTO.getFiles();
+        files= files==null?new ArrayList<MultipartFile>():files;
+        for (MultipartFile file : files){
+            if (file.getSize()==0){
+                continue;
+            }
+
+
         if (file!=null) {
             String contentType = file.getContentType();
 //            if (contentType != null || !contentType.startsWith("image/")) {
@@ -47,6 +55,8 @@ public class ProductController {
 //            }
             String filename = storeFile(file);
             //luu vao database
+        }
+
         }
             return ResponseEntity.ok("Post successful"+productDTO);
         }
