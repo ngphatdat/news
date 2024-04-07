@@ -4,10 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Table(name = "categoies")
 @Entity
+@Table(name = "categories")
+@Data//toString
+@Getter
 @Setter
-@Getter@Data@NoArgsConstructor@AllArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,5 @@
 package com.news.news.controller;
 
-import com.news.news.dto.CategoryDTO;
-import com.news.news.dto.OtherDTO;
 import com.news.news.dto.OtherDetailDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/others_detail")
-public class OtherDetailController {
+public class OderDetailController {
     @GetMapping("/other/{otherId}")
     public ResponseEntity<String> getOtherDetail(
            @Valid @PathVariable("otherId") Long otherId  ){
