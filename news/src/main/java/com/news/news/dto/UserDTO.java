@@ -2,6 +2,7 @@ package com.news.news.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    @JsonProperty("fullname")
+    @JsonProperty("full_name")
     private String fullName;
 
     @NotBlank(message = "Phone can not be blank")
@@ -38,6 +39,6 @@ public class UserDTO {
     private String googleAccountId;
 
     @JsonProperty("role_id")
-    @NotBlank(message = "can not be blank")
+ //   @NotEmpty(message = "can not be blank")
     private Long roleId;
 }

@@ -41,7 +41,7 @@ public ResponseEntity<?> CreatUser(@Valid @RequestBody UserDTO userDTO, BindingR
 
     @PostMapping("/login")
     public ResponseEntity<String> login(
-            @Valid @RequestBody UserLoginDTO userLoginDTO) {
+            @Valid @RequestBody UserDTO userDTO) {
         // Kiểm tra thông tin đăng nhập và sinh token
         // Trả về token trong response
         return ResponseEntity.ok("some token");
