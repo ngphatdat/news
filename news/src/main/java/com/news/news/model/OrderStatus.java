@@ -1,4 +1,4 @@
-package model;
+package com.news.news.model;
 
 
 public class OrderStatus {
