@@ -19,3 +19,9 @@ Spring:
       hibernate:
       dialect: org.hibernate.dialect.MySQL8Dialect
       format_sql: true
+jwt:
+  expiration: 2592000
+  #30 days = 30*24*60*60
+  secretKey: niQqLNNMt+/2KyskMWxeih5lAFVrDIvLV4Xv8rMWR9k=
+api:
+  prefix: api/v1

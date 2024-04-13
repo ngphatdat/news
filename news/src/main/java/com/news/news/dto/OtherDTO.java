@@ -1,10 +1,9 @@
 package com.news.news.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -27,6 +26,8 @@ public class OtherDTO {
     private float totalMoney;
     @JsonProperty("Shipping_method")
     private String ShippingMethod;
+    @JsonProperty("Shipping_date")
+    private LocalDate ShippingDate;
     @JsonProperty("Shipping_address")
     private String ShippingAddress;
     @JsonProperty("payment_method")

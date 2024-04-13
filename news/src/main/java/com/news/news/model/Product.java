@@ -6,7 +6,8 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor@NoArgsConstructor@Data
-public class Product {
+@Builder
+public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

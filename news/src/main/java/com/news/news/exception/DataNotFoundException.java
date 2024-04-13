@@ -1,2 +1,7 @@
-package com.news.news.exception;public class DataNotFoundException {
+package com.news.news.exception;
+
+public class DataNotFoundException extends Exception {
+    public DataNotFoundException(String message) {
+        super(message);
+    }
 }

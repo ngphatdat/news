@@ -1,9 +1,10 @@
 package com.news.news.controller;
 
-import com.news.news.dto.CategoryDTO;
 import com.news.news.dto.UserDTO;
 import com.news.news.dto.UserLoginDTO;
+import com.news.news.service.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -12,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/user")
+@RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
 @PostMapping("/register")
 public ResponseEntity<?> CreatUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
    try{
@@ -31,7 +33,8 @@ public ResponseEntity<?> CreatUser(@Valid @RequestBody UserDTO userDTO, BindingR
     if (!userDTO.getPassword().equals(userDTO.getRetypePassword())){
         return ResponseEntity.badRequest().body("password not match");
     }
-       return ResponseEntity.ok("Post successful");
+       userService.creatUser(userDTO);
+       return ResponseEntity.ok("Post successful" + userDTO);
    }
     catch (Exception e){
         return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,10 +44,13 @@ public ResponseEntity<?> CreatUser(@Valid @RequestBody UserDTO userDTO, BindingR
 
     @PostMapping("/login")
     public ResponseEntity<String> login(
-            @Valid @RequestBody UserDTO userDTO) {
-        // Kiểm tra thông tin đăng nhập và sinh token
-        // Trả về token trong response
-        return ResponseEntity.ok("some token");
+            @Valid @RequestBody UserLoginDTO userLoginDTO) {
+        try {
+            String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.news.news.controller;
+package com.news.news.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Min;
