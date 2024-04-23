@@ -2,6 +2,7 @@ package com.news.news.controller;
 
 import com.news.news.dto.UserDTO;
 import com.news.news.dto.UserLoginDTO;
+import com.news.news.responses.LoginReponse;
 import com.news.news.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -43,11 +44,14 @@ public ResponseEntity<?> CreatUser(@Valid @RequestBody UserDTO userDTO, BindingR
 }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
+    public ResponseEntity<LoginReponse> login(
             @Valid @RequestBody UserLoginDTO userLoginDTO) {
         try {
             String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(LoginReponse.builder()
+                            .token(token)
+                            .mess("Đăng nhập thành công")
+                        .build());
         } catch (Exception e) {
             return null;
         }
